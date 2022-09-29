@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 import { DebugService } from './services/debug.service';
 
 @Component({
@@ -6,9 +6,9 @@ import { DebugService } from './services/debug.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title: string = 'Expense Manager';
   constructor(private debugService : DebugService) {} ngOnInit() { 
-    this.debugService.info("Angular Application starts"); 
+    this.debugService.info("Angular Application starts");
  }
 }
