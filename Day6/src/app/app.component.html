@@ -1,0 +1,45 @@
+<div>
+  <h3>Date Pipe</h3>
+  short date :- {{ presentDate | date: "shortDate" }} <br />
+  Full date :- {{ presentDate | date: "fullDate" }} <br />
+  Formatted date:- {{ presentDate | date: "M/dd/yyyy" }} <br />
+  Hours and minutes:- {{ presentDate | date: "h:mm" }}
+</div>
+<div>
+  <h3>Async Pipe</h3>
+  <p>Seconds changing in Time: {{ timeChange | async }}</p>
+</div>
+<div>
+  <h3>Currency Pipe</h3>
+  <p>{{ price | currency: "EUR":true }}</p>
+  <p>{{ price | currency: "INR" }}</p>
+  <p>{{ price | currency: "USD" }}</p>
+</div>
+<div>
+  <h3>Slice Pipe</h3>
+  <p>Start index:- {{ Fruits | slice: 2 }}</p>
+  <p>Start and end index:- {{ Fruits | slice: 1:4 }}</p>
+  <p>Negative index:- {{ Fruits | slice: -2 }}</p>
+  <p>Negative start and end index:- {{ Fruits | slice: -4:-2 }}</p>
+</div>
+<div>
+  <h3>Decimal Pipe</h3>
+  <p>{{ decimalNum1 | number }}</p>
+  <p>{{ decimalNum2 | number }}</p>
+</div>
+<div>
+  <h3>PercentPipe Pipe</h3>
+  <p>{{ decimalNum3 | percent: "2.2" }}</p>
+</div>
+<div>
+  <h3>PercentPipe Pipe</h3>
+  <p ngNonBindable>{{ jsonData }}</p>
+  (1)
+  <p>{{ jsonData }}</p>
+  <p ngNonBindable>{{ jsonData | json }}</p>
+  <p>{{ jsonData | json }}</p>
+</div>
+<div>
+  <h3>DigitCount Pipe</h3>
+  <p>{{ digits }} - DigitCount: {{ digits | digitcount }}</p>
+</div>
