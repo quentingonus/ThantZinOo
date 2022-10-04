@@ -30,14 +30,15 @@ export class HomeComponent implements OnInit {
       error: (err: any) => console.log(err),
       complete: () => console.log("Observation completed")
     };
-    const countBtn1 = document.getElementById("counter1") as HTMLElement;
-    const countBtn2 = document.getElementById("counter2") as HTMLElement;
+
+    const getHtml = (id: string) => {
+      return document.getElementById(id) as HTMLElement;
+    }
 
     const showAlert = (message: string) => {
-      const alertBox = document.getElementById("alertBox") as HTMLElement;
       this.alertMsg = message;
-      alertBox.classList.remove("hidden");
-      setTimeout(() => { alertBox.classList.add("hidden") }, 1500)
+      getHtml("alertBox").classList.remove("hidden");
+      setTimeout(() => { getHtml("alertBox").classList.add("hidden") }, 1500)
     }
 
     numbers$.subscribe(observer);
@@ -56,9 +57,9 @@ export class HomeComponent implements OnInit {
     api$.subscribe((res: any) => {
       this.apiMessage = res.response.data;
     });
-    const clickEvent1$ = fromEvent(countBtn1, 'click');
+    const clickEvent1$ = fromEvent(getHtml("counter1"), 'click');
     clickEvent1$.subscribe(() => this.counter++);
-    const clickEvent2$ = fromEvent(countBtn2, 'click');
+    const clickEvent2$ = fromEvent(getHtml("counter2"), 'click');
     clickEvent2$.subscribe(() => this.counter > 0 ? this.counter-- : showAlert("Counter Value is 0 already!"));
   }
 
