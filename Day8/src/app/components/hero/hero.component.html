@@ -1,0 +1,18 @@
+<h2>Heroes List</h2>
+<input type="text" placeholder="New Hero Name" [(ngModel)]="newHero" />
+<button (click)="addNewHero()">Add New Hero</button>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <button
+      type="button"
+      class="heroList"
+      (click)="onSelect(hero)"
+      [class.selected]="hero === selectedHero"
+    >
+      <span class="badge">{{ hero.id }}. </span>
+      <span class="name">{{ hero.name }}</span>
+    </button>
+  </li>
+</ul>
+
+<app-child [hero]="selectedHero"></app-child>
