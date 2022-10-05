@@ -8,17 +8,17 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TestComponent,
-    HomeComponent,
-    AboutComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        TestComponent,
+        HomeComponent,
+        AboutComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
