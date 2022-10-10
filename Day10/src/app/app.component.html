@@ -1,0 +1,103 @@
+<mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Number</mat-label>
+  <input
+    type="text"
+    placeholder="Pick one"
+    aria-label="Number"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<div class="demo-section">
+  Button toggles badge visibility
+  <button
+    mat-raised-button
+    matBadge="7"
+    [matBadgeHidden]="hidden"
+    (click)="toggleBadgeVisibility()"
+  >
+    Hide
+  </button>
+</div>
+
+<p>You have received a file called "cat-picture.jpeg".</p>
+
+<button mat-raised-button (click)="openBottomSheet()">Open Bottom Sheet</button>
+
+<div class="example-label">Stroked</div>
+<div class="example-button-row">
+  <button mat-stroked-button>Basic</button>
+  <button mat-stroked-button color="primary">Primary</button>
+  <button mat-stroked-button color="accent">Accent</button>
+  <button mat-stroked-button color="warn">Warn</button>
+  <button mat-stroked-button disabled>Disabled</button>
+  <a mat-stroked-button href="https://www.google.com/" target="_blank">Link</a>
+</div>
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle value="bold">Bold</mat-button-toggle>
+  <mat-button-toggle value="italic">Italic</mat-button-toggle>
+  <mat-button-toggle value="underline">Underline</mat-button-toggle>
+</mat-button-toggle-group>
+
+<mat-card>
+  <mat-card-title>Simple Card Title</mat-card-title>
+  <mat-card-subtitle>Subtitle</mat-card-subtitle>
+  <mat-card-content>Simple card Body Content</mat-card-content>
+</mat-card>
+
+<section class="example-section">
+  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+  <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox>
+</section>
+
+<section class="example-section">
+  <span class="example-list-section">
+    <mat-checkbox
+      class="example-margin"
+      [checked]="allComplete"
+      [color]="task.color"
+      [indeterminate]="someComplete()"
+      (change)="setAll($event.checked)"
+    >
+      {{ task.name }}
+    </mat-checkbox>
+  </span>
+  <span class="example-list-section">
+    <ul>
+      <li *ngFor="let subtask of task.subtasks">
+        <mat-checkbox
+          [(ngModel)]="subtask.completed"
+          [color]="subtask.color"
+          (ngModelChange)="updateAllComplete()"
+        >
+          {{ subtask.name }}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </span>
+</section>
+
+<mat-chip-list aria-label="Fish selection">
+  <mat-chip>One fish</mat-chip>
+  <mat-chip>Two fish</mat-chip>
+  <mat-chip color="primary" selected>Primary fish</mat-chip>
+  <mat-chip color="accent" selected>Accent fish</mat-chip>
+</mat-chip-list>
+<mat-form-field appearance="fill">
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker" />
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<button mat-raised-button (click)="openDialog()">Open Dialog</button>
