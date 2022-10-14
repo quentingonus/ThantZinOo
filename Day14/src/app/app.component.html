@@ -1,0 +1,201 @@
+<mat-card class="example-form mt-5">
+  <mat-progress-bar
+    class="progress-bar"
+    mode="indeterminate"
+    *ngIf="signupLoading"
+  ></mat-progress-bar>
+  <form>
+    <h1>Register Form - Reactive</h1>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="name"
+          [errorStateMatcher]="matcher"
+          placeholder="Mg Mg"
+        />
+        <mat-error *ngIf="name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          [formControl]="mail"
+          [errorStateMatcher]="matcher"
+          placeholder="thantzioo3@gmail.com"
+        />
+        <mat-error *ngIf="mail.hasError('email') && !mail.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="mail.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          [formControl]="passwd"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="passwd.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwd.hasError('minlength')">
+          Password length needs to be minimum <strong>6</strong>.
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          type="password"
+          matInput
+          [formControl]="passwd2"
+          [errorStateMatcher]="matcher"
+        />
+        <mat-error *ngIf="passwd2.hasError('required')">
+          Confirm Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwd2.hasError('minlength')">
+          Confirm Password length also needs to be minimum <strong>6</strong>.
+        </mat-error>
+        <mat-error *ngIf="passwd2.hasError('notsame')">
+          Confirm Password needs to be the same with <strong>Password.</strong>.
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section class="example-section mt-5">
+      <mat-checkbox
+        class="example-margin"
+        name="agreeBox"
+        [formControl]="agreeBox"
+        >I agree to whatever it is.</mat-checkbox
+      >
+      <mat-error *ngIf="agreeBox.touched && agreeBox.hasError('required')">
+        This is required.
+      </mat-error>
+    </section>
+    <button mat-raised-button class="mt-5" (click)="signupBtn()">
+      Sign Up
+    </button>
+  </form>
+</mat-card>
+<mat-card class="example-form mt-5">
+  <mat-progress-bar
+    class="progress-bar"
+    mode="indeterminate"
+    *ngIf="signupLoading2"
+  ></mat-progress-bar>
+  <p>{{ myForm.value | json }}</p>
+  <form (ngSubmit)="signupBtn2(myForm)" #myForm="ngForm">
+    <h1>Register Form - Template Driven</h1>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          type="text"
+          matInput
+          [(ngModel)]="name2"
+          placeholder="Mg Mg"
+          name="name3"
+          #name3="ngModel"
+          required
+        />
+        <mat-error *ngIf="name3.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          appEmailvalidator
+          [(ngModel)]="mail2"
+          placeholder="thantzioo3@gmail.com"
+          name="mail3"
+          #mail3="ngModel"
+          required
+        />
+        <mat-error *ngIf="mail3.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="mail3.hasError('emailvalidator')">
+          Email is <strong>not valid.</strong>
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          appLengthvalidator
+          [(ngModel)]="passwd3"
+          name="passwd5"
+          #passwd5="ngModel"
+          required
+        />
+        <mat-error *ngIf="passwd5.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwd5.hasError('minlength')">
+          Password length needs to be minimum <strong>6</strong>.
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          type="password"
+          matInput
+          appLengthvalidator
+          appPasswordvalidator="passwd5"
+          [(ngModel)]="passwd4"
+          name="passwd6"
+          #passwd6="ngModel"
+          required
+        />
+        <mat-error *ngIf="passwd6.hasError('required')">
+          Confirm Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="passwd6.hasError('notsame')">
+          Confirm Password is <strong>not same with Password.</strong>
+        </mat-error>
+        <mat-error *ngIf="passwd6.hasError('minlength')">
+          Confirm Password length needs to be minimum <strong>6</strong>.
+        </mat-error>
+      </mat-form-field>
+    </section>
+    <section class="example-section mt-5">
+      <mat-checkbox
+        class="example-margin"
+        [(ngModel)]="agreeBox2"
+        name="agreeBox3"
+        #agreeBox3="ngModel"
+        required
+        >I agree to whatever it is.</mat-checkbox
+      >
+      <mat-error *ngIf="agreeBox3.touched && agreeBox3.hasError('required')">
+        This is required.
+      </mat-error>
+    </section>
+    <button mat-raised-button class="mt-5" type="submit">Sign Up</button>
+  </form>
+</mat-card>
