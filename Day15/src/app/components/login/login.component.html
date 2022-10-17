@@ -1,0 +1,41 @@
+<mat-card class="example-form mt-5">
+  <mat-progress-bar
+    class="progress-bar"
+    mode="indeterminate"
+    *ngIf="signupLoading"
+  ></mat-progress-bar>
+  <form [formGroup]="formData" (ngSubmit)="signupBtn(formData.value)">
+    <h1>Login Form</h1>
+    <p>mail: admin@admin.com | pass: admin</p>
+    <button mat-raised-button (click)="cheat()">
+      Go to '/admin' without logging in
+    </button>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="mail"
+          placeholder="mail@example.com"
+          autofocus
+        />
+      </mat-form-field>
+    </section>
+    <section>
+      <mat-form-field class="example-full-width mt-5" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input type="password" matInput formControlName="passwd" />
+      </mat-form-field>
+    </section>
+    <section class="example-section mt-5">
+      <mat-checkbox
+        class="example-margin"
+        name="agreeBox"
+        formControlName="agreeBox"
+        >Remember me.</mat-checkbox
+      >
+    </section>
+    <button mat-raised-button class="mt-5" type="submit">Login</button>
+  </form>
+</mat-card>
