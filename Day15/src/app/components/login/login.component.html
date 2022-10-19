@@ -4,12 +4,16 @@
     mode="indeterminate"
     *ngIf="signupLoading"
   ></mat-progress-bar>
-  <form [formGroup]="formData" (ngSubmit)="signupBtn(formData.value)">
+  <button mat-raised-button (click)="cheat()">
+    Go to '/admin' without logging in
+  </button>
+  <form
+    class="mt-5"
+    [formGroup]="formData"
+    (ngSubmit)="signupBtn(formData.value)"
+  >
     <h1>Login Form</h1>
     <p>mail: admin@admin.com | pass: admin</p>
-    <button mat-raised-button (click)="cheat()">
-      Go to '/admin' without logging in
-    </button>
     <section>
       <mat-form-field class="example-full-width mt-5" appearance="fill">
         <mat-label>Email</mat-label>

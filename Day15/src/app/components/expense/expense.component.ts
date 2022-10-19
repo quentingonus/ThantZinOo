@@ -18,13 +18,6 @@ export class ExpenseComponent implements OnInit {
     this.router.navigate(['logout'])
   }
 
-  ngOnInit(): void {
-    if (!localStorage.getItem('isUserLoggedIn')) {
-      this.snackBar.open('Unauthorized access detected.', 'Close', {
-        duration: 2500
-      })
-      this.router.navigate([''])
-    }
-  }
+  ngOnInit(): void { }
 
 }
