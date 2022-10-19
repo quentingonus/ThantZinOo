@@ -1,0 +1,20 @@
+.rate{
+  display: block;
+}
+
+.vote{
+  display: block;
+  font-size: 80%;
+}
+
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 500px;
+}
+.mat-cell {
+  text-align: left;
+  max-width: 200px;
+  overflow: hidden;
+}
