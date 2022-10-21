@@ -1,0 +1,44 @@
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Drama</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="drama"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of drama" cdkDrag>
+        {{ item | json }}
+      </div>
+    </div>
+  </div>
+  <div class="example-container">
+    <h2>Comedy</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="comedy"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of comedy" cdkDrag>
+        {{ item | json }}
+      </div>
+    </div>
+  </div>
+  <div class="example-container">
+    <h2>Horror</h2>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="horror"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div class="example-box" *ngFor="let item of horror" cdkDrag>
+        {{ item | json }}
+      </div>
+    </div>
+  </div>
+</div>
