@@ -1,0 +1,82 @@
+<div class="btnGroup">
+  <button mat-raised-button color="primary" (click)="add()">Add Student</button>
+  <button
+    mat-raised-button
+    color="primary"
+    *ngIf="studentList.length"
+    (click)="downloadInCSV(studentList)"
+  >
+    Download List
+  </button>
+</div>
+
+<div class="no-student" *ngIf="!studentList.length">
+  <h2>
+    Phew! No student data. Please add some or reload the page to get some demo
+    data.
+  </h2>
+</div>
+<div class="table mat-elevation-z8" *ngIf="studentList.length">
+  <mat-form-field appearance="standard">
+    <mat-label>Search...</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Search columns"
+      #input
+    />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID.</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone</th>
+      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+    </ng-container>
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+      <td mat-cell *matCellDef="let element">{{ element.dob }}</td>
+    </ng-container>
+    <ng-container matColumnDef="grade">
+      <th mat-header-cell *matHeaderCellDef>Grade</th>
+      <td mat-cell *matCellDef="let element">{{ element.grade }}</td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editStudent(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteStudent(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[2, 4, 6, 8, 10]"
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+  <!--<div *ngFor="let student of studentList">
+  <app-student
+    [student]="student"
+    (editedStudent)="editStudent($event)"
+    (deletedStudent)="deleteStudent($event)"
+  ></app-student>
+</div>-->
+</div>

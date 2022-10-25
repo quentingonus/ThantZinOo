@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>Add New Student</h2>
+<div mat-dialog-content class="mat-typography">
+  <h3>New Student ID - {{ data.id }}</h3>
+  <form [formGroup]="formData">
+    <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="formData.get('name')?.hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="formData.get('phone')?.hasError('required')">
+        Phone is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput type="date" formControlName="dob" />
+      <mat-error *ngIf="formData.get('date')?.hasError('required')">
+        Date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Grade</mat-label>
+      <input matInput formControlName="grade" />
+      <mat-error *ngIf="formData.get('grade')?.hasError('required')">
+        Grade is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" />
+      <mat-error *ngIf="formData.get('address')?.hasError('required')">
+        Address is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="save()" cdkFocusInitial>Save</button>
+</div>
