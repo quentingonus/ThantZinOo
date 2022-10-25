@@ -48,16 +48,8 @@ export class AppComponent {
     localStorage.setItem("horror", JSON.stringify(this.horror))
   }
 
-  changeType(event: any) {
-    if (event.container.data == this.drama) {
-      this.drama[event.currentIndex].type = event.currentIndex > 0 ? this.drama[event.currentIndex - 1].type : this.drama[event.currentIndex + 1].type
-    }
-    if (event.container.data == this.comedy) {
-      this.comedy[event.currentIndex].type = event.currentIndex > 0 ? this.comedy[event.currentIndex - 1].type : this.comedy[event.currentIndex + 1].type
-    }
-    if (event.container.data == this.horror) {
-      this.horror[event.currentIndex].type = event.currentIndex > 0 ? this.horror[event.currentIndex - 1].type : this.horror[event.currentIndex + 1].type
-    }
+  changeType(event: CdkDragDrop<string[]>) {
+    event.container.data == this.drama ? this.drama[event.currentIndex].type = "drama" : event.container.data == this.comedy ? this.comedy[event.currentIndex].type = "comedy" : this.horror[event.currentIndex].type = "horror"
   }
 
   itemSorter() {
