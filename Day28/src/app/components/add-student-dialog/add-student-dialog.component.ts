@@ -18,6 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AddStudentDialogComponent implements OnInit {
 
   formData: FormGroup = new FormGroup({
+    profile: new FormControl("", [Validators.required]),
     name: new FormControl("", [Validators.required]),
     phone: new FormControl("", [Validators.required]),
     dob: new FormControl("", [Validators.required]),

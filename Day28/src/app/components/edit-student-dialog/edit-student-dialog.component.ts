@@ -26,7 +26,7 @@ export class EditStudentDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   save(): void {
-    this.dialogRef.close({ id: this.data.student.id, ...this.formData.value })
+    this.dialogRef.close({ id: this.data.student.id, profile: this.data.student.profile, ...this.formData.value })
   }
 
 }

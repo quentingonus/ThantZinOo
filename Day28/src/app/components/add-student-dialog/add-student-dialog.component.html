@@ -11,6 +11,14 @@
     </mat-form-field>
 
     <mat-form-field class="input-fields" appearance="fill">
+      <mat-label>Profile Link</mat-label>
+      <input matInput formControlName="profile" />
+      <mat-error *ngIf="formData.get('profile')?.hasError('required')">
+        Profile Link is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-fields" appearance="fill">
       <mat-label>Phone</mat-label>
       <input matInput formControlName="phone" />
       <mat-error *ngIf="formData.get('phone')?.hasError('required')">

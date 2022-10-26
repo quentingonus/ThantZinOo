@@ -14,12 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddStudentDialogComponent } from './components/add-student-dialog/add-student-dialog.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AskConfirmComponent } from './components/ask-confirm/ask-confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditStudentDialogComponent,
-    AddStudentDialogComponent
+    AddStudentDialogComponent,
+    AskConfirmComponent
   ],
   imports: [
     BrowserModule,

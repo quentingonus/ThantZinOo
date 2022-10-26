@@ -3,6 +3,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditStudentDialogComponent } from './components/edit-student-dialog/edit-student-dialog.component';
 import { AddStudentDialogComponent } from './components/add-student-dialog/add-student-dialog.component';
+import { AskConfirmComponent } from './components/ask-confirm/ask-confirm.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -15,7 +16,7 @@ export class AppComponent {
   title = 'Day28';
   studentList!: any
   dataSource!: any
-  displayedColumns = ["id", "name", "phone", "dob", "grade", "address", "actions"]
+  displayedColumns = ["id", "profile", "name", "phone", "dob", "grade", "address", "actions"]
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -30,6 +31,8 @@ export class AppComponent {
       this.studentList = JSON.parse(localStorage.getItem("studentlist_25_10_2022") ? localStorage.getItem("studentlist_25_10_2022")! : "[]")
       if (!this.studentList.length) {
         this.studentList = this.student.getList()
+      } else {
+        for (let student of this.studentList) { this.studentList = this.student.addList(student) }
       }
     } else {
       this.studentList = this.student.getList()
@@ -39,6 +42,7 @@ export class AppComponent {
 
   updateDataSource() {
     this.dataSource = new MatTableDataSource(this.studentList)
+    this.dataSource.paginator = this.paginator
     localStorage.setItem("studentlist_25_10_2022", JSON.stringify(this.studentList))
   }
 
@@ -48,7 +52,7 @@ export class AppComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.studentList = this.student.setList(result)
+        this.studentList = this.student.addList(result)
         this.updateDataSource()
       }
     });
@@ -70,10 +74,17 @@ export class AppComponent {
   deleteStudent(event: any): void {
     let isExist = this.studentList.indexOf(event)
     if (isExist > -1) {
-      this.studentList.splice(isExist, 1)
+      const dialogRef = this.dialog.open(AskConfirmComponent, {
+        data: { name: this.studentList[isExist].name }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.studentList.splice(isExist, 1)
+          this.studentList = this.student.updateList(this.studentList)
+          this.updateDataSource()
+        }
+      });
     }
-    this.studentList = this.student.updateList(this.studentList)
-    this.updateDataSource()
   }
 
   applyFilter(event: Event) {
@@ -110,11 +121,11 @@ export class AppComponent {
     });
     csvContent += rows.join('\n');
 
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
-    hiddenElement.target = '_blank';
-    hiddenElement.download = 'studentsList.csv';
-    hiddenElement.click();
+    var tmp = document.createElement('a');
+    tmp.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+    tmp.target = '_blank';
+    tmp.download = 'studentsList.csv';
+    tmp.click();
     return
   }
 }
