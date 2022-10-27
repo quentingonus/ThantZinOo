@@ -15,6 +15,8 @@ import { AddStudentDialogComponent } from './components/add-student-dialog/add-s
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AskConfirmComponent } from './components/ask-confirm/ask-confirm.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { AskConfirmComponent } from './components/ask-confirm/ask-confirm.compon
     MatDialogModule,
     ReactiveFormsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxMatFileInputModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
